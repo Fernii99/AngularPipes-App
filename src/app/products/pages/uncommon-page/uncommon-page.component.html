@@ -1,1 +1,66 @@
-<p>uncommon-page works!</p>
+<p-panel [showHeader]="true" header="Not so common Pipes" class="p-1">
+  <h1> Not so common Pipes</h1>
+  <p>Included pipes in Angular - Usually in the common Module</p>
+</p-panel>
+
+<div class="grid">
+
+  <div class="col-12 sm:col-6">
+    <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+      <p> Saludos {{ name }}, es un placer {{ gender | i18nSelect: invitationMap}} a nuestro evento </p>
+      <p-button (click)="changeClient()" label="Cambiar persona" >
+
+      </p-button>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 sm:col-6">
+    <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+      <p>Right now {{ clients.length | i18nPlural:clientsMap}} </p>
+
+      <p-button (click)="deleteClient()" label="Remove client"></p-button>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 sm:col-6">
+    <p-fieldset legend="Slice Pipe" [toggleable]="true">
+          <b>Original</b>
+          <pre>{{ clients }}</pre>
+
+          <b>Slice:0:2</b>
+          <pre>{{ clients | slice:0:2 }}</pre>
+
+          <b>Slice:1:2</b>
+          <pre>{{ clients | slice:1:2 }}</pre>
+
+          <b>Slice:1:3</b>
+          <pre>{{ clients | slice:0:2 }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 sm:col-6">
+    <p-fieldset legend="Json Pipe" [toggleable]="true">
+      <p>Original: {{person}}</p>
+
+      <p>Parsed: </p>
+      <pre>{{person | json }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 sm:col-6">
+    <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue">
+          <b>{{item.key | titlecase }}: {{item.value | titlecase }}</b>
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 sm:col-6">
+    <p-fieldset legend="Async  Pipe" [toggleable]="true">
+      <pre *ngIf="!(promiseValue | async)"> Resolving Observable</pre>
+      <pre>{{ myObservableTimer | async }}</pre>
+    </p-fieldset>
+  </div>
+</div>
